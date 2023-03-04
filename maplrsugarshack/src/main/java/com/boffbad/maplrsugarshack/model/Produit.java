@@ -21,7 +21,7 @@ public class Produit {
 	@Column
 	private String nom;
 	
-	@ManyToOne(cascade=CascadeType.ALL)  
+	@ManyToOne(cascade=CascadeType.PERSIST)  
 	private TypeSirop typeSirop;
 	
 	@Column 

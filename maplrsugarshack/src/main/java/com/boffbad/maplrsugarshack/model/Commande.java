@@ -18,7 +18,7 @@ public class Commande {
 	@Column
 	public int id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	public StatutCommande statutCommande;
 
 
