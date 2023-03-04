@@ -19,7 +19,7 @@ public class LigneCommande {
 	@Column
 	public int id;
 
-	@ManyToOne(cascade=CascadeType.ALL) 
+	@ManyToOne(cascade=CascadeType.PERSIST) 
 	public Produit produit;
 	
 	@Column

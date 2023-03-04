@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.boffbad.maplrsugarshack.model.Commande;
@@ -17,6 +19,7 @@ import com.boffbad.maplrsugarshack.model.Produit;
 import com.boffbad.maplrsugarshack.model.StatutCommande;
 
 @RestController
+@CrossOrigin("*")
 public class LigneCommandeController {
 
 	@Autowired
@@ -33,7 +36,7 @@ public class LigneCommandeController {
 
 	@PostMapping("/lignecommande/{produit}/{quantite}")
 	public void insertProductInCommande(@PathVariable("produit") Produit produit,
-			@PathVariable("quantite") int quantite) {
+			@PathVariable("quantite") int quantite, @RequestBody Produit p) {
 		StatutCommande statutCommande = null;
 		statutCommande = statutCommandeRepository.findByNom("En cours");
 		Commande cmde = getCurrentCommande();
@@ -65,14 +68,14 @@ public class LigneCommandeController {
 
 	@PutMapping("/lignecommande/{id}/{quantite}")
 	public LigneCommande updateLigneCommandeQuantite(@PathVariable("id") int id,
-			@PathVariable("quantite") int quantite) {
+			@PathVariable("quantite") int quantite, @RequestBody LigneCommande ligneCommande) {
 
-		LigneCommande ligne = ligneCommandeRepository.findById(id).get();
+		//LigneCommande ligne = ligneCommandeRepository.findById(id).get();
 
-		if (ligne != null) {
-			ligne.setQuantite(quantite);
-			ligneCommandeRepository.save(ligne);
-			return ligne;
+		if (ligneCommande != null) {
+			ligneCommande.setQuantite(quantite);
+			ligneCommandeRepository.save(ligneCommande);
+			return ligneCommande;
 		} else {
 			return null;
 		}

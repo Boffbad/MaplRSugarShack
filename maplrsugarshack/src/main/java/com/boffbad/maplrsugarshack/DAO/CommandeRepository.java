@@ -9,5 +9,4 @@ public interface CommandeRepository extends CrudRepository<Commande, Integer>{
 
 	Commande findByStatutCommande(StatutCommande statutCommande);
 
-
 }
